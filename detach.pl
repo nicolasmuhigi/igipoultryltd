@@ -52,7 +52,7 @@ $html =~ s{(there a better)\s+(way to package eggs in Rwanda\?)}{$1 $2}g;
 $html =~ s{(we sell is)\s+(graded, labeled, and traceable)}{$1 $2}g;
 # footer "Made by <epique ai>" — same pre-wrap whitespace pushes the link onto
 # its own indented line on the homepage; collapse it to a single inline space
-$html =~ s{(>Made by)\s+(<!--\$--><a class="framer-text framer-styles-preset-1uyw8au"[^>]*>epique ai</a>)\s*(<!--/\$-->)\s*(</p>)}{$1 $2$3$4}s;
+$html =~ s{(>Made by)\s+(<!--\$--><a class="framer-text framer-styles-preset-1uyw8au"[^>]*>epique ai</a>)\s*(<!--/\$-->)\s*(</p>)}{$1 $2$3$4}gs;
 
 # --- "What We Offer" services section: on desktop the "Packaged Eggs" image
 # was a plain egg close-up while phone showed the branded shopping-cart image;
@@ -172,12 +172,14 @@ $html =~ s/(data-framer-name="Pages links" data-highlight="true" tabindex="0" st
 if ($html !~ /id="igi-hero-override"/) {
     my $hero_sel = q{.framer-pm057i h1.framer-styles-preset-45dtz8,.framer-aqcw9y h1.framer-styles-preset-45dtz8};
     my $hero_css = q{<style id="igi-hero-override">}
-      . qq{${hero_sel}{font-size:96px !important;line-height:1.02em !important}}
+      . qq{${hero_sel}{font-size:clamp(64px,6.86vw,96px) !important;line-height:1.02em !important}}
       . q{.framer-pm057i,.framer-aqcw9y{place-content:center !important;align-items:center !important;padding-top:120px !important}}
       . q{section[data-framer-name="Hero"] [data-framer-background-image-wrapper]{filter:brightness(0.5) !important}}
       . q{video[data-bg-video]{filter:brightness(0.5)}}
       . q{section[data-framer-name="Team"] [data-framer-name="Image Wrap"]>div{top:0 !important;bottom:auto !important;transform:none !important}}
       . q{section[data-framer-name="Team"] img{object-fit:cover !important;object-position:center top !important}}
+      . q{[data-framer-name="Pages links"] .framer-sePGo p{font-size:18px !important}}
+      . q{[data-framer-name="Pages links"] [data-framer-name="Links"]{gap:20px !important}}
       . qq{\@media (min-width:810px) and (max-width:1023.98px){${hero_sel}{font-size:74px !important}}}
       . qq{\@media (max-width:809.98px){${hero_sel}{font-size:46px !important}}}
       . q{</style>};
