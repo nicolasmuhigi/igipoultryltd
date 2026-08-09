@@ -1,0 +1,11 @@
+# intermediate rebuild backups (index.html.bak is kept as the homepage source)
+*.bak2
+*.bak3
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+
+# dependencies (none needed to serve this static site)
+node_modules/
