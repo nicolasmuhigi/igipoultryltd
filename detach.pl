@@ -54,6 +54,51 @@ $html =~ s{(we sell is)\s+(graded, labeled, and traceable)}{$1 $2}g;
 # its own indented line on the homepage; collapse it to a single inline space
 $html =~ s{(>Made by)\s+(<!--\$--><a class="framer-text framer-styles-preset-1uyw8au"[^>]*>epique ai</a>)\s*(<!--/\$-->)\s*(</p>)}{$1 $2$3$4}gs;
 
+# --- content edits (August 2026 copy pass) ---
+
+# homepage "What We Offer" -> Packaged Eggs: 6-packs now available, 100+ partners
+$html =~ s{Hygienically packed, graded and traceable\. Available in 10-packs and 30-egg trays, with a 6-egg pack on the way for small households and convenience stores\. Trusted by 40\+ B2B partners}{Hygienically packed, graded and traceable. Available in 6-packs, 10-packs, and 30-egg trays for households, small shops, and convenience stores. Trusted by 100+ B2B partners.}g;
+
+# homepage story section: full rewrite ("Founded on a Question. Built on a Standard.")
+$html =~ s{Founded on a Question: The Origins of IGI POULTRY and the Standard We Now Uphold\.}{Founded on a Question. Built on a Standard.}g;
+{
+    my $p_open = q{<p class="framer-text framer-styles-preset-205csa" data-styles-preset="uPn7Hf65u" dir="auto" style="--framer-text-color:var(--token-95a4fe8a-051a-461b-9c38-d7fb7cf004e5, rgb(225, 235, 235))">};
+    my $p_close = q{</p>};
+    my $new_group1 = $p_open . q{Standing in a supermarket, two young Rwandans, Yvan and Patrick, watched a customer buy eggs that were simply placed into a thin paper bag. As she lifted the bag to put it into her cart, some of the eggs cracked.} . $p_close
+      . $p_open . q{We asked ourselves:} . $p_close
+      . $p_open . q{&ldquo;Isn&rsquo;t there a better way to package eggs in Rwanda?&rdquo;} . $p_close
+      . $p_open . q{That question led to research that later became IGI POULTRY.} . $p_close;
+    $html =~ s{<p[^>]*>Standing in a supermarket.*?That single question became a company</p>}{$new_group1}s;
+
+    my $new_group2 = $p_open . q{Today, we are transforming Rwanda's layer poultry industry through reliable production, hygienic packaging, and full traceability. Every egg we sell is graded, labeled, and traceable either sourced from our own farm or trusted partner farms that meet our standards.} . $p_close;
+    $html =~ s{<p[^>]*>Today, IGI POULTRY is transforming.*?share our standards\.</p>}{$new_group2}s;
+}
+
+# homepage Why Us / The Challenge / Our Solution sub-headlines
+$html =~ s{Building a healthier, more sustainable food future\.}{Traceable fresh eggs, trusted quality, reliable supply.}g;
+$html =~ s{Growing demand for sustainably produced poultry products\.}{Growing demand for sustainably produced agricultural products in Rwanda.}g;
+$html =~ s{Delivering premium eggs, and innovative poultry solutions\.}{Reliable supply, hygienically packaged, fully traceable eggs.}g;
+
+# solutions page: "What We're Solving" subsection wording
+$html =~ s{Closing the Gaps in Rwanda's Agricultural Industry}{Closing the Gaps in Rwanda's Layer Poultry Industry}g;
+
+# solutions page wheel: Organic Fertilizer description
+$html =~ s{Nutrient rich fertilizer made from poultry waste, a sustainable, chemical-free alternative for organic and farming\.}{Chicken waste is repurposed into organic fertiliser for sustainable agriculture.}g;
+
+# about page: mention the 6-pack alongside the existing pack sizes
+$html =~ s{Available in packs of 10 and trays of 30, our eggs are trusted by}{Available in packs of 6, 10, and trays of 30, our eggs are trusted by}g;
+
+# about page: organic fertilizer product card
+$html =~ s{Produced from nutrient-rich poultry manure, our organic fertilizer transforms agricultural waste into an eco-friendly solution that enriches soil, improves crop productivity, and supports sustainable farming\.}{Our organic fertilizer transforms agricultural waste into an eco friendly solution that enriches soil, improves crop productivity and supports sustainable farming.}g;
+
+# about page: stats section
+$html =~ s{(<h2 class="framer-text framer-styles-preset-19grblp" data-styles-preset="QdUbA2J_P" dir="auto">)9\+(</h2>)}{$1 . "10+" . $2}ge;
+$html =~ s{(<h2 class="framer-text framer-styles-preset-19grblp" data-styles-preset="QdUbA2J_P" dir="auto">)50\+(</h2>)}{$1 . "100+" . $2}ge;
+
+# about page: Impact section tab labels should match the panel headings they open
+$html =~ s{>The Purpose<}{>Our Mission<}g;
+$html =~ s{>Our Values<}{>Our Vision<}g;
+
 # --- "What We Offer" services section: on desktop the "Packaged Eggs" image
 # was a plain egg close-up while phone showed the branded shopping-cart image;
 # make desktop use the same (SDsM...) image the phone does ---
@@ -121,9 +166,9 @@ my %faq_answers = (
     q{Are you importing eggs from somewhere else?} =>
         q{We're 100% Rwandan, started after spotting a gap in how eggs were being sold (loose in paper bags!). Everything is produced and packaged locally.},
     q{Can I just buy a small pack of eggs from you, or do you only sell in bulk?} =>
-        q{Right now we sell in packs of 10 and trays of 30, mostly to shops, restaurants, and hotels. We know that's not always convenient for smaller households, so a 6-egg pack is in the works.},
+        q{Right now we sell in packs of 6 and 10, and trays of 30, mostly to shops, restaurants, and hotels. The 6-egg pack is great for smaller households too.},
     q{How do I know your eggs are actually clean and safe to eat?} =>
-        q{Every egg is graded, labeled, and traceable back to the farm it came from — ours or one of our partner farms, all of which follow eco-friendly practices. Nothing is treated with harmful chemicals.},
+        q{Every egg is graded, labeled, and traceable back to the farm it came from, ours or one of our partner farms, all of which follow eco-friendly practices. Nothing is treated with harmful chemicals.},
     q{I run a small shop, is my order too small for you to work with?} =>
         q{Not at all. We already supply a wide range of businesses, from big names like SPAR and Carrefour Mart down to neighborhood spots like bakeries and butcheries. We're set up to handle different order sizes.},
     q{Do you do anything with all the waste from your chickens?} =>
