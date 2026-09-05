@@ -172,6 +172,8 @@ $html =~ s/(data-framer-name="Pages links" data-highlight="true" tabindex="0" st
 if ($html !~ /id="igi-hero-override"/) {
     my $hero_sel = q{.framer-pm057i h1.framer-styles-preset-45dtz8,.framer-aqcw9y h1.framer-styles-preset-45dtz8};
     my $hero_css = q{<style id="igi-hero-override">}
+      . q{:root,html{color-scheme:light only !important}}
+      . q{img,video{color-scheme:light only}}
       . qq{${hero_sel}{font-size:clamp(64px,6.86vw,96px) !important;line-height:1.02em !important}}
       . q{.framer-pm057i,.framer-aqcw9y{place-content:center !important;align-items:center !important;padding-top:120px !important}}
       . q{section[data-framer-name="Hero"] [data-framer-background-image-wrapper]{filter:brightness(0.5) !important}}
@@ -202,7 +204,7 @@ if ($html !~ /id="igi-btn-hover"/) {
 
 # --- theme-color meta (only if not already present) ---
 if ($html !~ /name="theme-color"/) {
-    $html =~ s/(<meta name="viewport" content="width=device-width">)/$1\n    <meta name="theme-color" content="#ffffff">\n    <meta name="apple-mobile-web-app-status-bar-style" content="default">/;
+    $html =~ s/(<meta name="viewport" content="width=device-width">)/$1\n    <meta name="theme-color" content="#ffffff">\n    <meta name="color-scheme" content="light only">\n    <meta name="apple-mobile-web-app-status-bar-style" content="default">/;
 }
 
 # --- strip Framer's live runtime: analytics beacon, module preloads, main bundle ---
