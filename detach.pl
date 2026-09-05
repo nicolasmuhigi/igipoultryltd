@@ -131,10 +131,10 @@ if ($html =~ /<section class="framer-sym14o" data-framer-name="Company">/ && $ht
       . q{.igi-partners-headline{max-width:660px}}
       . q{.igi-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fdcc05;color:#fff;font-weight:500;font-size:16px;letter-spacing:-.04em;text-transform:uppercase;padding:8px;border-radius:12px;margin-bottom:24px}}
       . q{.igi-eyebrow-dot{width:8px;height:8px;border-radius:50%;background:#fff}}
-      . q{.igi-partners-title{color:#122023;font-size:52px;line-height:1.05;font-weight:600;letter-spacing:-.04em;margin:0}}
+      . q{.igi-partners-title{color:#122023;font-size:clamp(38px,3.71vw,52px);line-height:1.05;font-weight:600;letter-spacing:-.04em;margin:0}}
       . q{.igi-partners-sub{color:#3d6a6e;font-size:18px;margin-top:18px;line-height:1.5;letter-spacing:-.04em}}
       . q{.igi-partners-stat{flex:none;text-align:right}}
-      . q{.igi-stat-num{color:#122023;font-size:96px;font-weight:700;line-height:1;letter-spacing:-.04em}}
+      . q{.igi-stat-num{color:#122023;font-size:clamp(64px,6.86vw,96px);font-weight:700;line-height:1;letter-spacing:-.04em}}
       . q{.igi-stat-label{display:block;color:#3d6a6e;font-size:16px;margin-top:8px;line-height:1.35;letter-spacing:-.04em}}
       . q{.igi-marquee{position:relative;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}}
       . q{.igi-marquee-track{display:flex;width:max-content;animation:igi-scroll 45s linear infinite}}
